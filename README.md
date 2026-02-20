@@ -70,6 +70,22 @@ Each activity record contains:
 
 ---
 
+## 📸 Screenshots
+
+Below are sample screenshots of the Teacher Insights Dashboard Application in action.
+
+### 🏠 Home / DashBoard
+<p align="center">
+  <img src="screenshots/screenshot-1.png" alt="DashBoard" width="800"/>
+</p>
+
+### 🔍 Filtered Teacher's Overview
+<p align="center">
+  <img src="screenshots/screenshot-5.png" alt="Teacher's Overview" width="800"/>
+</p>
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
