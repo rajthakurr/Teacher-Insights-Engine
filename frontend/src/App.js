@@ -14,20 +14,22 @@ function App() {
     fetchDashboardData();
   }, []);
 
-  const fetchDashboardData = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/dashboard');
-      setDashboardData(response.data);
-      setError(null);
-    } catch (err) {
-      console.error('Error fetching dashboard data:', err);
-      setError('Failed to load dashboard data. Make sure the backend server is running on port 5000.');
-      setDashboardData(null);
-    } finally {
-      setLoading(false);
-    }
-  };
+const API_URL = process.env.REACT_APP_API_URL;
+
+const fetchDashboardData = async () => {
+  try {
+    setLoading(true);
+    const response = await axios.get(`${API_URL}/api/dashboard`);
+    setDashboardData(response.data);
+    setError(null);
+  } catch (err) {
+    console.error('Error fetching dashboard data:', err);
+    setError('Failed to load dashboard data.');
+    setDashboardData(null);
+  } finally {
+    setLoading(false);
+  }
+};
 
   if (loading) {
     return (
