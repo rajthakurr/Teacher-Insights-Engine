@@ -99,7 +99,7 @@ curl http://localhost:5000/api/dashboard
 
 ---
 
-## 💡 Key Features You Can Try
+## 💡 Key Features
 
 ### Dashboard View
 - View overall statistics in summary cards
