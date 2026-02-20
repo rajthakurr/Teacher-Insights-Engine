@@ -154,14 +154,22 @@ npm start
 
 ---
 
-## 🔗 Important URLs
+## 🔗 API Endpoints
 
-| Purpose | URL |
-|---------|-----|
-| Dashboard | http://localhost:3000 |
-| API Summary | http://localhost:5000/api/summary |
-| API Teachers | http://localhost:5000/api/teachers |
-| API Dashboard | http://localhost:5000/api/dashboard |
+| Endpoint | Method | Purpose | Example |
+|----------|--------|---------|---------|
+| `/api/teachers` | GET | All teachers | `curl http://localhost:5000/api/teachers` |
+| `/api/summary` | GET | Overall stats | `curl http://localhost:5000/api/summary` |
+| `/api/weekly-trends` | GET | Weekly trends | `curl http://localhost:5000/api/weekly-trends` |
+| `/api/teacher/:id` | GET | Teacher details | `curl http://localhost:5000/api/teacher/T001` |
+| `/api/activities` | GET | Filter activities | `curl "http://localhost:5000/api/activities?teacher_id=T001"` |
+| `/api/activities/by-type` | GET | Group by type | `curl http://localhost:5000/api/activities/by-type` |
+| `/api/dashboard` | GET | All dashboard data | `curl http://localhost:5000/api/dashboard` |
 
 ---
+
+
+
+
+
 
