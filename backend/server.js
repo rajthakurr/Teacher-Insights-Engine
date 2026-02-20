@@ -1,8 +1,8 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const fs = require('fs');
-const path = require('path');
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -11,110 +11,97 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Load dataset
-const dataPath = path.join(process.cwd(), 'data', 'teacher_activity_data.json');
+// ✅ Health check (VERY IMPORTANT for Render)
+app.get("/", (req, res) => {
+  res.send("Teacher Insights Backend is running ✅");
+});
+
+// Load dataset (Render-safe)
+const dataPath = path.join(process.cwd(), "data", "teacher_activity_data.json");
 let activityData = [];
 
 try {
-  const rawData = fs.readFileSync(dataPath);
-  activityData = JSON.parse(rawData);
+  activityData = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
+  console.log(`Loaded ${activityData.length} activity records`);
 } catch (error) {
-  console.error('Error loading data:', error);
-  activityData = [];
+  console.error("Error loading data:", error);
 }
 
-// Utility function to group activities by week
+// Utilities
 function groupByWeek(activities) {
   const weeks = {};
   activities.forEach((activity) => {
     const date = new Date(activity.created_at);
     const weekStart = new Date(date);
-    weekStart.setDate(date.getDate() - date.getDay()); // Get Sunday of the week
-    const weekKey = weekStart.toISOString().split('T')[0]; // YYYY-MM-DD
+    weekStart.setDate(date.getDate() - date.getDay());
+    const weekKey = weekStart.toISOString().split("T")[0];
 
-    if (!weeks[weekKey]) {
-      weeks[weekKey] = [];
-    }
+    if (!weeks[weekKey]) weeks[weekKey] = [];
     weeks[weekKey].push(activity);
   });
   return weeks;
 }
 
-// Utility function to count activities by type
 function countByType(activities) {
-  const counts = { lesson: 0, quiz: 0, assessment: 0 };
-  activities.forEach((activity) => {
-    if (activity.activity_type in counts) {
-      counts[activity.activity_type]++;
-    }
-  });
-  return counts;
+  return activities.reduce(
+    (acc, a) => {
+      acc[a.activity_type]++;
+      return acc;
+    },
+    { lesson: 0, quiz: 0, assessment: 0 }
+  );
 }
 
-// API Routes
+// ---------------- ROUTES ----------------
 
-// 1. Get all teachers
-app.get('/api/teachers', (req, res) => {
-  const teachers = [];
-  const teacherMap = {};
+// Get all teachers
+app.get("/api/teachers", (req, res) => {
+  const map = {};
 
-  activityData.forEach((activity) => {
-    if (!teacherMap[activity.teacher_id]) {
-      teacherMap[activity.teacher_id] = {
-        teacher_id: activity.teacher_id,
-        teacher_name: activity.teacher_name,
+  activityData.forEach((a) => {
+    if (!map[a.teacher_id]) {
+      map[a.teacher_id] = {
+        teacher_id: a.teacher_id,
+        teacher_name: a.teacher_name,
         activity_count: 0,
       };
     }
-    teacherMap[activity.teacher_id].activity_count++;
+    map[a.teacher_id].activity_count++;
   });
 
-  Object.values(teacherMap).forEach((teacher) => {
-    teachers.push(teacher);
-  });
-
-  res.json(teachers);
+  res.json(Object.values(map));
 });
 
-// 2. Get overall activity summary
-app.get('/api/summary', (req, res) => {
-  const summary = {
+// Summary
+app.get("/api/summary", (req, res) => {
+  res.json({
     total_activities: activityData.length,
+    total_teachers: new Set(activityData.map(a => a.teacher_id)).size,
     activity_breakdown: countByType(activityData),
-    total_teachers: new Set(activityData.map((a) => a.teacher_id)).size,
-  };
-  res.json(summary);
+  });
 });
 
-// 3. Get weekly activity trends
-app.get('/api/weekly-trends', (req, res) => {
-  const weeklyData = groupByWeek(activityData);
-  const trends = [];
-
-  Object.keys(weeklyData)
-    .sort()
-    .forEach((week) => {
-      const activities = weeklyData[week];
-      trends.push({
-        week: week,
-        total_activities: activities.length,
-        breakdown: countByType(activities),
-      });
-    });
-
-  res.json(trends);
+// Weekly trends
+app.get("/api/weekly-trends", (req, res) => {
+  const weekly = groupByWeek(activityData);
+  const result = Object.keys(weekly).sort().map(week => ({
+    week,
+    total_activities: weekly[week].length,
+    breakdown: countByType(weekly[week])
+  }));
+  res.json(result);
 });
 
-// 4. Get teacher-specific analytics
-app.get('/api/teacher/:teacher_id', (req, res) => {
-  const { teacher_id } = req.params;
+// ✅ Teacher analytics (FIXED)
+app.get("/api/teacher/:teacher_id", (req, res) => {
+  const teacherId = req.params.teacher_id; // STRING
 
   const teacherActivities = activityData.filter(
-    (a) => a.teacher_id === teacher_id
+    a => a.teacher_id === teacherId
   );
 
-  if (teacherActivities.length === 0) {
-    return res.status(404).json({ error: 'Teacher not found' });
+  if (!teacherActivities.length) {
+    return res.status(404).json({ error: "Teacher not found" });
   }
 
   const teacher = teacherActivities[0];
@@ -126,107 +113,43 @@ app.get('/api/teacher/:teacher_id', (req, res) => {
     activity_breakdown: countByType(teacherActivities),
     weekly_breakdown: groupByWeek(teacherActivities),
     subjects: [...new Set(teacherActivities.map(a => a.subject))],
-    classes: [...new Set(teacherActivities.map(a => a.class))],
+    classes: [...new Set(teacherActivities.map(a => a.class))]
   });
 });
 
-// 5. Get activity by type and teacher
-app.get('/api/activities/by-type', (req, res) => {
-  const typeBreakdown = {};
+// Dashboard
+app.get("/api/dashboard", (req, res) => {
+  const map = {};
 
-  activityData.forEach((activity) => {
-    const type = activity.activity_type;
-    if (!typeBreakdown[type]) {
-      typeBreakdown[type] = [];
-    }
-    typeBreakdown[type].push(activity);
-  });
-
-  res.json(typeBreakdown);
-});
-
-// 6. Get filtered activities
-app.get('/api/activities', (req, res) => {
-  let filtered = activityData;
-  const { teacher_id, activity_type, subject } = req.query;
-
-  if (teacher_id) {
-    filtered = filtered.filter((a) => a.teacher_id === teacher_id);
-  }
-  if (activity_type) {
-    filtered = filtered.filter((a) => a.activity_type === activity_type);
-  }
-  if (subject) {
-    filtered = filtered.filter((a) => a.subject === subject);
-  }
-
-  res.json(filtered);
-});
-
-// 7. Get dashboard data (combined overview)
-app.get('/api/dashboard', (req, res) => {
-  const teachers = [];
-  const teacherMap = {};
-
-  activityData.forEach((activity) => {
-    if (!teacherMap[activity.teacher_id]) {
-      teacherMap[activity.teacher_id] = {
-        teacher_id: activity.teacher_id,
-        teacher_name: activity.teacher_name,
+  activityData.forEach(a => {
+    if (!map[a.teacher_id]) {
+      map[a.teacher_id] = {
+        teacher_id: a.teacher_id,
+        teacher_name: a.teacher_name,
         activity_count: 0,
-        activity_breakdown: { lesson: 0, quiz: 0, assessment: 0 },
+        activity_breakdown: { lesson: 0, quiz: 0, assessment: 0 }
       };
     }
-    teacherMap[activity.teacher_id].activity_count++;
-    if (activity.activity_type in teacherMap[activity.teacher_id].activity_breakdown) {
-      teacherMap[activity.teacher_id].activity_breakdown[activity.activity_type]++;
-    }
+    map[a.teacher_id].activity_count++;
+    map[a.teacher_id].activity_breakdown[a.activity_type]++;
   });
-
-  Object.values(teacherMap).forEach((teacher) => {
-    teachers.push(teacher);
-  });
-
-  const weeklyData = groupByWeek(activityData);
-  const weeklyTrends = [];
-
-  Object.keys(weeklyData)
-    .sort()
-    .forEach((week) => {
-      const activities = weeklyData[week];
-      weeklyTrends.push({
-        week: week,
-        total_activities: activities.length,
-        breakdown: countByType(activities),
-      });
-    });
 
   res.json({
-    teachers,
-    weekly_trends: weeklyTrends,
+    teachers: Object.values(map),
     summary: {
       total_activities: activityData.length,
-      total_teachers: teachers.length,
+      total_teachers: Object.keys(map).length,
       activity_breakdown: countByType(activityData),
-    },
+    }
   });
 });
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Internal server error' });
-});
-
-// 404 handler
+// 404
 app.use((req, res) => {
-  res.status(404).json({ error: 'Endpoint not found' });
+  res.status(404).json({ error: "Endpoint not found" });
 });
 
-// Start server
+// Start
 app.listen(PORT, () => {
-  console.log(`Teacher Insights Backend running on http://localhost:${PORT}`);
-  console.log(`Loaded ${activityData.length} activity records`);
+  console.log(`Server running on port ${PORT}`);
 });
-
-module.exports = app;
