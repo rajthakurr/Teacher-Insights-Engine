@@ -1,0 +1,118 @@
+.teacher-list {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.teacher-list h2 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 10px;
+}
+
+.teacher-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.teacher-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.teacher-item:hover {
+  border-color: #667eea;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+  transform: translateX(5px);
+}
+
+.teacher-info {
+  flex: 1;
+}
+
+.teacher-info h3 {
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.teacher-id {
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.teacher-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.activity-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.activity-label {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.activity-breakdown {
+  display: flex;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.lesson-count,
+.quiz-count,
+.assessment-count {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.view-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+.view-btn:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .teacher-item {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .teacher-info {
+    flex: 1 1 100%;
+  }
+
+  .activity-breakdown {
+    flex: 1 1 100%;
+  }
+}

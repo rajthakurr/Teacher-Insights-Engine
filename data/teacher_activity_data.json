@@ -1,0 +1,218 @@
+[
+  {
+    "id": 1,
+    "teacher_id": "T001",
+    "teacher_name": "Mr. John Smith",
+    "activity_type": "lesson",
+    "subject": "Mathematics",
+    "class": "10-A",
+    "created_at": "2025-01-08T09:30:00Z"
+  },
+  {
+    "id": 2,
+    "teacher_id": "T001",
+    "teacher_name": "Mr. John Smith",
+    "activity_type": "quiz",
+    "subject": "Mathematics",
+    "class": "10-A",
+    "created_at": "2025-01-09T14:15:00Z"
+  },
+  {
+    "id": 3,
+    "teacher_id": "T001",
+    "teacher_name": "Mr. John Smith",
+    "activity_type": "assessment",
+    "subject": "Mathematics",
+    "class": "10-A",
+    "created_at": "2025-01-10T11:00:00Z"
+  },
+  {
+    "id": 4,
+    "teacher_id": "T002",
+    "teacher_name": "Ms. Sarah Johnson",
+    "activity_type": "lesson",
+    "subject": "English",
+    "class": "9-B",
+    "created_at": "2025-01-08T10:00:00Z"
+  },
+  {
+    "id": 5,
+    "teacher_id": "T002",
+    "teacher_name": "Ms. Sarah Johnson",
+    "activity_type": "lesson",
+    "subject": "English",
+    "class": "9-B",
+    "created_at": "2025-01-09T13:30:00Z"
+  },
+  {
+    "id": 6,
+    "teacher_id": "T002",
+    "teacher_name": "Ms. Sarah Johnson",
+    "activity_type": "quiz",
+    "subject": "English",
+    "class": "9-B",
+    "created_at": "2025-01-10T15:45:00Z"
+  },
+  {
+    "id": 7,
+    "teacher_id": "T002",
+    "teacher_name": "Ms. Sarah Johnson",
+    "activity_type": "lesson",
+    "subject": "English",
+    "class": "9-B",
+    "created_at": "2025-01-11T09:15:00Z"
+  },
+  {
+    "id": 8,
+    "teacher_id": "T003",
+    "teacher_name": "Dr. Michael Brown",
+    "activity_type": "assessment",
+    "subject": "Science",
+    "class": "11-A",
+    "created_at": "2025-01-08T08:45:00Z"
+  },
+  {
+    "id": 9,
+    "teacher_id": "T003",
+    "teacher_name": "Dr. Michael Brown",
+    "activity_type": "lesson",
+    "subject": "Science",
+    "class": "11-A",
+    "created_at": "2025-01-09T12:00:00Z"
+  },
+  {
+    "id": 10,
+    "teacher_id": "T003",
+    "teacher_name": "Dr. Michael Brown",
+    "activity_type": "lesson",
+    "subject": "Science",
+    "class": "11-A",
+    "created_at": "2025-01-10T10:30:00Z"
+  },
+  {
+    "id": 11,
+    "teacher_id": "T003",
+    "teacher_name": "Dr. Michael Brown",
+    "activity_type": "quiz",
+    "subject": "Science",
+    "class": "11-A",
+    "created_at": "2025-01-11T14:20:00Z"
+  },
+  {
+    "id": 12,
+    "teacher_id": "T003",
+    "teacher_name": "Dr. Michael Brown",
+    "activity_type": "assessment",
+    "subject": "Science",
+    "class": "11-A",
+    "created_at": "2025-01-12T11:00:00Z"
+  },
+  {
+    "id": 13,
+    "teacher_id": "T004",
+    "teacher_name": "Mrs. Emily White",
+    "activity_type": "lesson",
+    "subject": "History",
+    "class": "8-C",
+    "created_at": "2025-01-13T09:30:00Z"
+  },
+  {
+    "id": 14,
+    "teacher_id": "T004",
+    "teacher_name": "Mrs. Emily White",
+    "activity_type": "quiz",
+    "subject": "History",
+    "class": "8-C",
+    "created_at": "2025-01-14T13:00:00Z"
+  },
+  {
+    "id": 15,
+    "teacher_id": "T004",
+    "teacher_name": "Mrs. Emily White",
+    "activity_type": "lesson",
+    "subject": "History",
+    "class": "8-C",
+    "created_at": "2025-01-15T10:15:00Z"
+  },
+  {
+    "id": 16,
+    "teacher_id": "T005",
+    "teacher_name": "Mr. David Lee",
+    "activity_type": "assessment",
+    "subject": "Computer Science",
+    "class": "12-A",
+    "created_at": "2025-01-08T16:00:00Z"
+  },
+  {
+    "id": 17,
+    "teacher_id": "T005",
+    "teacher_name": "Mr. David Lee",
+    "activity_type": "lesson",
+    "subject": "Computer Science",
+    "class": "12-A",
+    "created_at": "2025-01-09T09:00:00Z"
+  },
+  {
+    "id": 18,
+    "teacher_id": "T005",
+    "teacher_name": "Mr. David Lee",
+    "activity_type": "lesson",
+    "subject": "Computer Science",
+    "class": "12-A",
+    "created_at": "2025-01-10T14:30:00Z"
+  },
+  {
+    "id": 19,
+    "teacher_id": "T005",
+    "teacher_name": "Mr. David Lee",
+    "activity_type": "quiz",
+    "subject": "Computer Science",
+    "class": "12-A",
+    "created_at": "2025-01-11T11:45:00Z"
+  },
+  {
+    "id": 20,
+    "teacher_id": "T001",
+    "teacher_name": "Mr. John Smith",
+    "activity_type": "lesson",
+    "subject": "Mathematics",
+    "class": "10-A",
+    "created_at": "2025-01-15T10:00:00Z"
+  },
+  {
+    "id": 21,
+    "teacher_id": "T002",
+    "teacher_name": "Ms. Sarah Johnson",
+    "activity_type": "assessment",
+    "subject": "English",
+    "class": "9-B",
+    "created_at": "2025-01-16T12:30:00Z"
+  },
+  {
+    "id": 22,
+    "teacher_id": "T003",
+    "teacher_name": "Dr. Michael Brown",
+    "activity_type": "lesson",
+    "subject": "Science",
+    "class": "11-A",
+    "created_at": "2025-01-17T09:45:00Z"
+  },
+  {
+    "id": 23,
+    "teacher_id": "T004",
+    "teacher_name": "Mrs. Emily White",
+    "activity_type": "assessment",
+    "subject": "History",
+    "class": "8-C",
+    "created_at": "2025-01-18T15:00:00Z"
+  },
+  {
+    "id": 24,
+    "teacher_id": "T005",
+    "teacher_name": "Mr. David Lee",
+    "activity_type": "lesson",
+    "subject": "Computer Science",
+    "class": "12-A",
+    "created_at": "2025-01-19T13:15:00Z"
+  }
+]
