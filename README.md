@@ -192,15 +192,3 @@ Enhance the frontend to add more filtering options:
 - Ensure `teacher_activity_data.json` exists in `/data` directory
 - Check file format and structure
 
-## 📝 License
-
-MIT License
-
-## 👥 Author
-
-Teacher Insights Dashboard Team
-
----
-
-**Version**: 1.0.0  
-**Last Updated**: February 2025
