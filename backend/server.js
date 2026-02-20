@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 // Load dataset (Render-safe)
-const dataPath = path.join(process.cwd(), "data", "teacher_activity_data.json");
+const dataPath = path.join(__dirname, "data", "teacher_activity_data.json");
 let activityData = [];
 
 try {
