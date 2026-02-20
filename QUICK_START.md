@@ -13,7 +13,7 @@ Your full-stack Teacher Insights Dashboard is ready! The project is fully built 
 | **Database** | ✅ Ready | 24 teacher activity records loaded |
 | **Charts** | ✅ Ready | Chart.js visualizations (Line, Bar, Doughnut) |
 | **Styling** | ✅ Ready | Responsive CSS, mobile-friendly |
-| **Documentation** | ✅ Complete | README, Deployment Guide & API docs |
+| **Documentation** | ✅ Complete | README, Quick Start & Architecture docs |
 
 ---
 
@@ -46,7 +46,7 @@ npm start
 
 ---
 
-## 📊 Features You Get
+## 📊 Features
 
 ### Dashboard View (Main Page)
 - **Summary Cards**: Shows total activities, teachers, and breakdown by type
@@ -79,34 +79,6 @@ curl http://localhost:5000/api/teacher/T001
 
 # Get complete dashboard data
 curl http://localhost:5000/api/dashboard
-```
-
----
-
-## 📁 Project Structure
-
-```
-teacher-Insights-dashboard/
-├── backend/
-│   ├── package.json
-│   ├── server.js (Main backend with 7 API endpoints)
-│   └── node_modules/
-├── frontend/
-│   ├── package.json
-│   ├── public/index.html
-│   └── src/
-│       ├── App.js (Main app component)
-│       ├── components/
-│       │   ├── Dashboard.js (Dashboard view)
-│       │   ├── TeacherAnalytics.js (Detail view)
-│       │   ├── Summary.js (Summary cards)
-│       │   └── TeacherList.js (Teachers list)
-│       └── node_modules/
-├── data/
-│   └── teacher_activity_data.json (24 records)
-├── README.md (Full documentation)
-├── DEPLOYMENT_GUIDE.md (Production deployment)
-└── .github/copilot-instructions.md
 ```
 
 ---
