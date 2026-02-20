@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Load dataset
-const dataPath = path.join(__dirname, '..', 'data', 'teacher_activity_data.json');
+const dataPath = path.join(process.cwd(), 'data', 'teacher_activity_data.json');
 let activityData = [];
 
 try {
