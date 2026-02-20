@@ -106,15 +106,19 @@ app.get('/api/weekly-trends', (req, res) => {
 });
 
 // 4. Get teacher-specific analytics
-app.get('/api/teacher/:teacher_id', (req, res) => {
-  const { teacher_id } = req.params;
-  const teacherActivities = activityData.filter((a) => a.teacher_id === teacher_id);
+app.get('/api/teachers/:id', (req, res) => {
+  const teacherId = Number(req.params.id);
+
+  const teacherActivities = activityData.filter(
+    (a) => Number(a.teacher_id) === teacherId
+  );
 
   if (teacherActivities.length === 0) {
-    return res.status(404).json({ message: 'Teacher not found' });
+    return res.status(404).json({ error: 'Teacher not found' });
   }
 
   const teacher = teacherActivities[0];
+
   const analytics = {
     teacher_id: teacher.teacher_id,
     teacher_name: teacher.teacher_name,
