@@ -150,19 +150,3 @@ Each activity record contains:
 
 ---
 
-## 🐛 Troubleshooting
-
-### Backend not connecting
-- Ensure backend is running on port 5000
-- Check firewall settings
-- Verify CORS is enabled
-
-### Frontend not loading
-- Clear browser cache
-- Check if frontend is running on port 3000
-- Verify proxy setting in frontend package.json
-
-### Data not loading
-- Ensure `teacher_activity_data.json` exists in `/data` directory
-- Check file format and structure
-
