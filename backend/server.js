@@ -106,11 +106,11 @@ app.get('/api/weekly-trends', (req, res) => {
 });
 
 // 4. Get teacher-specific analytics
-app.get('/api/teachers/:id', (req, res) => {
-  const teacherId = Number(req.params.id);
+app.get('/api/teacher/:teacher_id', (req, res) => {
+  const { teacher_id } = req.params;
 
   const teacherActivities = activityData.filter(
-    (a) => Number(a.teacher_id) === teacherId
+    (a) => a.teacher_id === teacher_id
   );
 
   if (teacherActivities.length === 0) {
@@ -119,17 +119,15 @@ app.get('/api/teachers/:id', (req, res) => {
 
   const teacher = teacherActivities[0];
 
-  const analytics = {
+  res.json({
     teacher_id: teacher.teacher_id,
     teacher_name: teacher.teacher_name,
     total_activities: teacherActivities.length,
     activity_breakdown: countByType(teacherActivities),
     weekly_breakdown: groupByWeek(teacherActivities),
-    subjects: [...new Set(teacherActivities.map((a) => a.subject))],
-    classes: [...new Set(teacherActivities.map((a) => a.class))],
-  };
-
-  res.json(analytics);
+    subjects: [...new Set(teacherActivities.map(a => a.subject))],
+    classes: [...new Set(teacherActivities.map(a => a.class))],
+  });
 });
 
 // 5. Get activity by type and teacher
