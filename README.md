@@ -4,6 +4,8 @@ A comprehensive analytics dashboard for school administrators to monitor teacher
 
 > **⚡ Quick Start**: New to this project? Read [START_HERE.md](START_HERE.md) to get up and running in 2 minutes!
 
+---
+
 ## 🎯 Features
 
 - **Overall Teacher Activity Overview**: View total lessons, quizzes, and assessments created per teacher
@@ -12,6 +14,8 @@ A comprehensive analytics dashboard for school administrators to monitor teacher
 - **Filters & Insights**: Filter by teacher, view time-based trends, and subject/class breakdowns
 - **Interactive Charts**: Line charts, bar charts, and doughnut charts for data visualization
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
+
+---
 
 ## 📋 Project Structure
 
@@ -43,12 +47,16 @@ teacher-Insights-dashboard/
 └── README.md
 ```
 
+---
+
 ## 🛠 Tech Stack
 
 - **Frontend**: React 18, Chart.js, Axios
 - **Backend**: Node.js, Express.js
 - **Data**: JSON-based (extensible to database)
 - **Styling**: CSS3 with responsive design
+
+---
 
 ## 📊 Dataset Structure
 
@@ -59,6 +67,8 @@ Each activity record contains:
 - `created_at`: Timestamp of activity creation
 - `subject`: Subject being taught
 - `class`: Class/grade level
+
+---
 
 ## 🚀 Getting Started
 
@@ -102,17 +112,7 @@ Each activity record contains:
    ```
    The frontend will open at `http://localhost:3000`
 
-## 📡 API Endpoints
-
-The backend provides the following REST API endpoints:
-
-- `GET /api/teachers` - Get all teachers with activity counts
-- `GET /api/summary` - Get overall activity summary
-- `GET /api/weekly-trends` - Get weekly activity trends
-- `GET /api/teacher/:teacher_id` - Get detailed analytics for a specific teacher
-- `GET /api/activities/by-type` - Get activities grouped by type
-- `GET /api/activities` - Get filtered activities (supports query params: teacher_id, activity_type, subject)
-- `GET /api/dashboard` - Get complete dashboard data
+---
 
 ## 🎨 UI Components
 
@@ -128,6 +128,8 @@ The backend provides the following REST API endpoints:
 - Subjects taught and classes
 - Detailed weekly patterns
 - Multiple chart visualizations
+
+---
 
 ## 💡 Key Features 
 
@@ -146,35 +148,7 @@ The backend provides the following REST API endpoints:
 - Bar charts for comparisons
 - Doughnut charts for distribution
 
-## 🔄 Data Flow
-
-1. Backend loads JSON data on startup
-2. Frontend fetches dashboard data via API
-3. Data processed and aggregated in backend
-4. Charts rendered using Chart.js
-5. User can click on teachers for detailed view
-6. Individual teacher analytics fetched on demand
-
-## 📈 How to Extend
-
-### Add a Database
-Replace the JSON file loading in `backend/server.js` with database queries (MongoDB, PostgreSQL, etc.)
-
-### Add More Metrics
-Extend the API endpoints to calculate additional metrics like:
-- Student engagement rates
-- Performance trends
-- Comparative analysis between teachers
-
-### Add Filters
-Enhance the frontend to add more filtering options:
-- Date range selection
-- Multiple teacher comparison
-- Subject-specific analytics
-
-### Deployment
-- **Backend**: Deploy to Heroku, AWS, or DigitalOcean
-- **Frontend**: Deploy to Vercel, Netlify, or GitHub Pages
+---
 
 ## 🐛 Troubleshooting
 
