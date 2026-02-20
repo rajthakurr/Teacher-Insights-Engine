@@ -129,7 +129,7 @@ The backend provides the following REST API endpoints:
 - Detailed weekly patterns
 - Multiple chart visualizations
 
-## 💡 Key Features Explained
+## 💡 Key Features 
 
 ### Activity Aggregation
 - Activities are grouped by week for trend analysis
